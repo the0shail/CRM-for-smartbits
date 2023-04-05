@@ -1,0 +1,15 @@
+@import url('../font/Roboto/roboto.css');
+@import url('../font/Montserrat/montserrat.css');
+
+
+* {
+    font-family: 'Montserrat';
+}
+
+body{
+    margin: 0;
+}
+
+*.box {
+    box-sizing: border-box;
+}

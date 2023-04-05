@@ -3,4 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-createApp(App).use(store).use(router).mount('#app')
+// FontAwesome
+import '@/plugins/fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+
+createApp(App)
+    .use(store)
+    .use(router)
+    .component('font-awesome-icon', FontAwesomeIcon)
+    .mount('#app')
