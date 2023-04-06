@@ -8,31 +8,17 @@
             <th class="table_" style="width: 30%;">Информация лида</th>
             <th class="table_" style="width: 30%;">Комментарий</th>
         </tr>
-        <tr class="table_content">
+        <tr class="table_content" v-for="product in vuexGetProducts()" :key="product.id">
             <td>
-                <router-link to="/">100</router-link>
+                <router-link :to="{ name: 'ProductCardView', params: { id: product.id } }">
+                    {{ product.id }}
+                </router-link>
             </td>
-            <td>11.03.2023</td>
-            <td>не назначен</td>
-            <td>Новый</td>
-            <td>Алексей +99812345678</td>
-            <td></td>
-        </tr>
-        <tr class="table_content">
-            <td><router-link to="/">101</router-link></td>
-            <td>11.03.2023</td>
-            <td>не назначен</td>
-            <td>Новый</td>
-            <td>Алексей +99812345678</td>
-            <td></td>
-        </tr>
-        <tr class="table_content">
-            <td><router-link to="/">102</router-link></td>
-            <td>11.03.2023</td>
-            <td>не назначен</td>
-            <td>Новый</td>
-            <td>Алексей +99812345678</td>
-            <td></td>
+            <td>{{ product.created_date }}</td>
+            <td>{{ product.manager }}</td>
+            <td>{{ product.status }}</td>
+            <td>{{ product.info_lid }}</td>
+            <td>{{ product.comment }}</td>
         </tr>
     </table>
     <div class="notification">
@@ -54,9 +40,13 @@
 <script lang="ts">
 
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
+
 
 export default defineComponent({
     methods: {
+        ...mapGetters("storeProduct", ['vuexGetProducts']),
+
         coloredFields(): void {
             const fields: NodeListOf<Element> = document.querySelectorAll('.table_content');
 
@@ -67,6 +57,8 @@ export default defineComponent({
     },
     mounted() {
         this.coloredFields()
+        console.log(this.vuexGetProducts());
+
     }
 
 })
@@ -104,9 +96,11 @@ td {
 
 .notification {
     display: flex;
-    li{
+
+    li {
         margin: 0 30px 0 0;
         list-style: none;
         font-size: 18px;
     }
-}</style>
+}
+</style>
