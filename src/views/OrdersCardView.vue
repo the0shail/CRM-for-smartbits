@@ -1,24 +1,29 @@
 <template>
+    <Navigation />
     <table class="tableUI">
         <tr class="table_header">
             <th class="table_" style="width: 5%;">Код</th>
             <th class="table_" style="width: 12%;">Дата создания</th>
-            <th class="table_" style="width: 12%;">Менеджер</th>
-            <th class="table_" style="width: 12%;">Статус</th>
-            <th class="table_" style="width: 30%;">Информация лида</th>
-            <th class="table_" style="width: 30%;">Комментарий</th>
+            <th class="table_" style="width: 8%;">Сумма, $</th>
+            <th class="table_" style="width: 12%;">Статус оплаты</th>
+            <th class="table_" style="width: 16%;">Статус исполнителя</th>
+            <th class="table_" style="width: 10%;">Менеджер</th>
+            <th class="table_" style="width: 15%;">Клиент</th>
+            <th class="table_" style="width: 22%;">Комментарий</th>
         </tr>
-        <tr class="table_content" v-for="product in vuexGetApplications()" :key="product.id">
+        <tr class="table_content" v-for="order in vuexGetOrders()" :key="order.id">
             <td>
-                <router-link :to="{ name: 'ProductCardView', params: { id: product.id } }">
-                    {{ product.id }}
+                <router-link :to="{ name: 'ProductCardView', params: { id: order.id } }">
+                    {{ order.id }}
                 </router-link>
             </td>
-            <td>{{ product.created_date }}</td>
-            <td>{{ product.manager }}</td>
-            <td>{{ product.status }}</td>
-            <td>{{ product.info_lid }}</td>
-            <td>{{ product.comment }}</td>
+            <td>{{ order.created_date }}</td>
+            <td>{{ order.price }}$</td>
+            <td>{{ order.status_payment }}</td>
+            <td>{{ order.status_product }}</td>
+            <td>{{ order.manager }}</td>
+            <td>{{ order.client }}</td>
+            <td>{{ order.comment }}</td>
         </tr>
     </table>
     <div class="notification">
@@ -38,15 +43,20 @@
 </template>
 
 <script lang="ts">
-
+import TableUI from '@/components/UI/Table.vue';
+import Navigation from '@/components/UI/Navigation.vue';
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 
 
-export default defineComponent({
-    methods: {
-        ...mapGetters("storeProduct", ['vuexGetApplications']),
 
+export default defineComponent({
+    name: 'HomeView',
+    components: {
+        TableUI, Navigation
+    },
+    methods: {
+        ...mapGetters('storeProduct', ['vuexGetOrders']),
         coloredTableFields(): void {
             const fields: NodeListOf<Element> = document.querySelectorAll('.table_content');
 
@@ -58,7 +68,6 @@ export default defineComponent({
     mounted() {
         this.coloredTableFields()
     }
-
 })
 </script>
 

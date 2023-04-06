@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProductCardView from '../views/ProductCardView.vue'
+import OrdersCardView from '../views/OrdersCardView.vue'
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/product/:id',
     name: "ProductCardView",
     component: ProductCardView
+  },
+  {
+    path: '/orders',
+    name: "OrdersTableView",
+    component: OrdersCardView
   }
 ]
 
