@@ -8,19 +8,19 @@
         </router-link>
         <ul class="nav-collapse">
             <li class="nav-link">
-                <router-link to="" class="persone">
+                <router-link to="" class="icon-system">
                     <font-awesome-icon icon="fa-solid fa-user-group" style="color: #000000;" />
                 </router-link>
-                <router-link to="" class="persone">
+                <router-link to="" class="icon-system">
                     <font-awesome-icon icon="fa-solid fa-user-large" style="color: #000000;" />
                 </router-link>
 
             </li>
-            <li class="nav-link">
-                <span>Иванов Иван (менеджер)</span>
+            <li class="nav-link persone">
+                Иванов Иван (менеджер)
             </li>
             <li class="nav-link">
-                <router-link to="">
+                <router-link to="" class="icon-system">
                     <font-awesome-icon icon="fa-solid fa-right-from-bracket" style="color: #000000;" />
                 </router-link>
             </li>
@@ -41,8 +41,8 @@ export default defineComponent({
 nav {
     width: 100%;
     box-shadow: 1px 3px 5px rgb(189, 189, 189);
-    height: 60px;
-    padding: 0 10px;
+    height: auto;
+    padding: 0 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,13 +75,13 @@ nav {
         list-style: none;
 
         .nav-link{
-            margin: 0 10px;
+            // margin: 0 10px;
             font-size: 22px;
-            .persone{
+            .icon-system{
                 position: relative;
-                &:last-child{
-                    margin-left: 10px;
-                }
+                padding: 10px;
+
+
                 // &::after{
                 //     content: '9+';
                 //     font-size: 10px;
@@ -97,8 +97,10 @@ nav {
                 //     background-color: rgb(0, 145, 255);
                 // }
             }
-            span{
-                font-size: 18px;
+            &.persone{
+                font-size: 16px;
+                font-weight: 500;
+                padding: 0 10px;
             }
         }
     }
