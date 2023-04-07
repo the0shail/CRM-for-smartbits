@@ -15,7 +15,7 @@
             <label for="tab-btn-2">Заказ</label>
 
             <div id="CardApplic">
-                <CardApplic />
+                <CardApplication />
             </div>
             <div id="CardOrder">
                 <CardOrder />
@@ -27,11 +27,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CardOrder from '@/components/UI/CardOrder.vue'
-import CardApplic from '@/components/UI/CardApplic.vue'
+import CardApplication from '@/components/UI/CardApplication.vue'
 export default defineComponent({
     name: "cardComponent",
     components: {
-        CardOrder, CardApplic
+        CardOrder, CardApplication
     },
     methods: {
 

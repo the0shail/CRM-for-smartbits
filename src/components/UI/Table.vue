@@ -1,12 +1,12 @@
 <template>
     <table class="tableUI">
         <tr class="table_header">
-            <th class="table_" style="width: 5%;">Код</th>
-            <th class="table_" style="width: 12%;">Дата создания</th>
-            <th class="table_" style="width: 12%;">Менеджер</th>
-            <th class="table_" style="width: 12%;">Статус</th>
-            <th class="table_" style="width: 30%;">Информация лида</th>
-            <th class="table_" style="width: 30%;">Комментарий</th>
+            <th style="width: 5%;">Код</th>
+            <th style="width: 12%;">Дата создания</th>
+            <th style="width: 12%;">Менеджер</th>
+            <th style="width: 12%;">Статус</th>
+            <th style="width: 30%;">Информация лида</th>
+            <th style="width: 30%;">Комментарий</th>
         </tr>
         <tr class="table_content" v-for="product in vuexGetApplications()" :key="product.id">
             <td>
@@ -41,22 +41,15 @@
 
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
+import coloredTableFields from "@/services/coloredTableFields"
 
 
 export default defineComponent({
     methods: {
         ...mapGetters("storeProduct", ['vuexGetApplications']),
-
-        coloredTableFields(): void {
-            const fields: NodeListOf<Element> = document.querySelectorAll('.table_content');
-
-            fields.forEach((tr, index) => {
-                if (index % 2 == 0) tr.classList.add("spicy");
-            });
-        },
     },
     mounted() {
-        this.coloredTableFields()
+        coloredTableFields("table_content")
     }
 
 })
