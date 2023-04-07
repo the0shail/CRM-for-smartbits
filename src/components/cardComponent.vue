@@ -14,7 +14,7 @@
             <input type="radio" name="tab-btn" id="tab-btn-2" value="" checked>
             <label for="tab-btn-2">Заказ</label>
 
-            <div id="content-1">
+            <div id="CardApplic">
                 <CardApplic />
             </div>
             <div id="CardOrder">
@@ -115,7 +115,12 @@ export default defineComponent({
 
     .tabs {
         div {
-            border-top: 1px solid #E5E0E5;
+
+            &#CardApplic,
+            &#CardOrder {
+                border-top: 1px solid #E5E0E5;
+            }
+
         }
     }
 
@@ -127,8 +132,7 @@ export default defineComponent({
         /* скрыть контент по умолчанию */
         display: none;
         // border: 1px solid #e0e0e0;
-        padding: 10px 15px;
-        font-size: 16px;
+        // font-size: 16px;
     }
 
     /* отобразить контент, связанный с вабранной радиокнопкой (input type="radio") */
