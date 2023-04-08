@@ -28,11 +28,6 @@
             <div class="client_contact">
                 <label for="contact">Контактное лицо</label>
                 <input list="browsers" id="contact" :value="dataWithVuex().contact_user.user_name" name="contact" />
-                <!-- <datalist id="browsers">
-                    <option>Петров Петр Петрович</option>
-                    <option>Владислав Владимир Владимирович</option>
-                    <option>Антонов Антон Антонович</option>
-                </datalist> -->
             </div>
             <div class="client_comment">
                 <label for="comment">Комментарий</label>
@@ -53,13 +48,13 @@
                         <td>{{ td.id }}</td>
                         <td class="left">{{ td.name_product }}</td>
                         <td>{{ td.quantity }}</td>
-                        <td>{{ td.price }}</td>
+                        <td ref="table_price">{{ td.price }}</td>
                     </tr>
                 </table>
             </div>
             <div class="product_price">
                 <label for="product_price">Сумма, $</label>
-                <input type="text" id="product_price" value="30 345" disabled>
+                <input type="text" id="product_price" :value="sumPriceTable()" disabled>
             </div>
         </div>
     </div>
@@ -77,6 +72,12 @@ export default defineComponent({
         ...mapGetters('storeProduct', ['vuexGetOrdersAsId']),
         dataWithVuex() {
             return this.vuexGetOrdersAsId()(this.$route.params.id)
+        },
+        sumPriceTable() {
+            let prices = this.dataWithVuex().product_info
+            let sum = prices.reduce((sum, data) => sum += Number(data.price), 0)
+
+            return sum
         }
     },
     mounted() {
@@ -164,6 +165,7 @@ export default defineComponent({
 
     .product {
         margin-bottom: 30px;
+
         table,
         th,
         td {
@@ -197,6 +199,7 @@ export default defineComponent({
                 padding: 10px 0;
             }
         }
+
         .product_price {
             display: flex;
             flex-direction: column;
