@@ -17,22 +17,13 @@
             <td>{{ product.created_date }}</td>
             <td>{{ product.manager }}</td>
             <td>{{ product.status }}</td>
-            <td>{{ product.info_lid }}</td>
+            <td>{{ product.info_lid.name }} {{ product.info_lid.phone }}</td>
             <td>{{ product.comment }}</td>
         </tr>
     </table>
     <div class="notification">
         <li class="row_number">
-            Результатов: 5
-        </li>
-        <li class="row_number">
-            Результатов: 5
-        </li>
-        <li class="row_number">
-            Результатов: 5
-        </li>
-        <li class="row_number">
-            Результатов: 5
+            Результатов: {{ viewResultElement() }}
         </li>
     </div>
 </template>
@@ -42,11 +33,15 @@
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 import coloredTableFields from "@/services/coloredTableFields"
+import resultElement from "@/services/resultElement"
 
 
 export default defineComponent({
     methods: {
         ...mapGetters("storeProduct", ['vuexGetDemand']),
+        viewResultElement(){
+            return resultElement(this.vuexGetDemand())
+        }
     },
     mounted() {
         coloredTableFields("table_content")

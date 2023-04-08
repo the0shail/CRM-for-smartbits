@@ -15,6 +15,32 @@ const product = {
                 "status_application": "correction",
                 "comment": ""
             },
+            {
+                "id": "102",
+                "created_date": "11.03.2023",
+                "manager": "не назначен",
+                "status": "новый",
+                "name_company": "ООО 'SMARTBITS PRO'",
+                "info_lid": {
+                    "name": "Алексей",
+                    "phone": " +99812345678"
+                },
+                "status_application": "correction",
+                "comment": ""
+            },
+            {
+                "id": "103",
+                "created_date": "11.03.2023",
+                "manager": "не назначен",
+                "status": "новый",
+                "name_company": "ООО 'SMARTBITS PRO'",
+                "info_lid": {
+                    "name": "Алексей",
+                    "phone": " +99812345678"
+                },
+                "status_application": "correction",
+                "comment": ""
+            },
         ],
         orders: [
             {

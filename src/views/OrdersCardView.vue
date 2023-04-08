@@ -2,14 +2,14 @@
     <Navigation />
     <table class="tableUI">
         <tr class="table_header">
-            <th class="table_" style="width: 5%;">Код</th>
-            <th class="table_" style="width: 12%;">Дата создания</th>
-            <th class="table_" style="width: 8%;">Сумма, $</th>
-            <th class="table_" style="width: 12%;">Статус оплаты</th>
-            <th class="table_" style="width: 16%;">Статус исполнителя</th>
-            <th class="table_" style="width: 10%;">Менеджер</th>
-            <th class="table_" style="width: 15%;">Клиент</th>
-            <th class="table_" style="width: 22%;">Комментарий</th>
+            <th style="width: 5%;">Код</th>
+            <th style="width: 12%;">Дата создания</th>
+            <th style="width: 8%;">Сумма, $</th>
+            <th style="width: 12%;">Статус оплаты</th>
+            <th style="width: 16%;">Статус исполнителя</th>
+            <th style="width: 10%;">Менеджер</th>
+            <th style="width: 15%;">Клиент</th>
+            <th style="width: 22%;">Комментарий</th>
         </tr>
         <tr class="table_content" v-for="order in vuexGetOrders()" :key="order.id">
             <td>
@@ -28,16 +28,7 @@
     </table>
     <div class="notification">
         <li class="row_number">
-            Результатов: 5
-        </li>
-        <li class="row_number">
-            Результатов: 5
-        </li>
-        <li class="row_number">
-            Результатов: 5
-        </li>
-        <li class="row_number">
-            Результатов: 5
+            Результатов: {{ viewResultElement() }}
         </li>
     </div>
 </template>
@@ -45,6 +36,9 @@
 <script lang="ts">
 import TableUI from '@/components/UI/Table.vue';
 import Navigation from '@/components/UI/Navigation.vue';
+import coloredTableFields from '@/services/coloredTableFields';
+import resultElement from '@/services/resultElement';
+
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 
@@ -57,16 +51,12 @@ export default defineComponent({
     },
     methods: {
         ...mapGetters('storeProduct', ['vuexGetOrders']),
-        coloredTableFields(): void {
-            const fields: NodeListOf<Element> = document.querySelectorAll('.table_content');
-
-            fields.forEach((tr, index) => {
-                if (index % 2 == 0) tr.classList.add("spicy");
-            });
-        },
+        viewResultElement() {
+            return resultElement(this.vuexGetOrders())
+        }
     },
     mounted() {
-        this.coloredTableFields()
+        coloredTableFields("table_content")
     }
 })
 </script>
