@@ -1,7 +1,8 @@
 <template>
     <div class="card">
+        <!-- {{ requestDataWithVuex() }} -->
         <div class="card_status">
-            <h3>Заявка 105</h3>
+            <h3>Заявка {{ $route.params.id }}</h3>
             <h5>Доставка</h5>
         </div>
         <div class="card_setting">
@@ -26,8 +27,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import CardOrder from '@/components/UI/CardOrder.vue'
 import CardApplication from '@/components/UI/CardApplication.vue'
+
+
 export default defineComponent({
     name: "cardComponent",
     components: {

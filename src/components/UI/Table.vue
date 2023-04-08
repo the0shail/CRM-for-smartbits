@@ -8,7 +8,7 @@
             <th style="width: 30%;">Информация лида</th>
             <th style="width: 30%;">Комментарий</th>
         </tr>
-        <tr class="table_content" v-for="product in vuexGetApplications()" :key="product.id">
+        <tr class="table_content" v-for="product in vuexGetDemand()" :key="product.id">
             <td>
                 <router-link :to="{ name: 'ProductCardView', params: { id: product.id } }">
                     {{ product.id }}
@@ -46,7 +46,7 @@ import coloredTableFields from "@/services/coloredTableFields"
 
 export default defineComponent({
     methods: {
-        ...mapGetters("storeProduct", ['vuexGetApplications']),
+        ...mapGetters("storeProduct", ['vuexGetDemand']),
     },
     mounted() {
         coloredTableFields("table_content")

@@ -3,11 +3,11 @@
         <div class="info_order">
             <div class="info_created">
                 <label for="created_date">Дата создания</label>
-                <input type="text" id="created_date" value="11.03.2023" disabled>
+                <input type="text" id="created_date" :value="dataWithVuex().created_date" disabled>
             </div>
             <div class="info_manager">
                 <label for="manager">Менеджер</label>
-                <input type="text" id="manager" value="Иванов И.И." disabled>
+                <input type="text" id="manager" :value="dataWithVuex().manager" disabled>
             </div>
         </div>
         <div class="client">
@@ -15,30 +15,28 @@
             <div class="client_row">
                 <div class="client_partner">
                     <label for="partner">Партнер</label>
-                    <input type="text" id="partner" value="SmartBits">
+                    <input type="text" id="partner" :value="dataWithVuex().partner">
                 </div>
                 <div class="client_counterparty">
                     <label for="counterparty">Контрагент</label>
-                    <input list="company" id="counterparty" name="counterparty" value="ООО 'SMARTBITS PRO'" />
+                    <input list="company" id="counterparty" name="counterparty" value="" />
                     <datalist id="company">
-                        <option>ООО 'SMARTBITS PRO'</option>
-                        <option>ООО 'SMARTBITS PRO'</option>
-                        <option>ООО 'SMARTBITS PRO'</option>
+                        <option v-for="option in dataWithVuex().counterparty">{{ option }}</option>
                     </datalist>
                 </div>
             </div>
             <div class="client_contact">
                 <label for="contact">Контактное лицо</label>
-                <input list="browsers" id="contact" name="contact" value="Петров Петр Петрович" />
-                <datalist id="browsers">
+                <input list="browsers" id="contact" :value="dataWithVuex().contact_user.user_name" name="contact" />
+                <!-- <datalist id="browsers">
                     <option>Петров Петр Петрович</option>
                     <option>Владислав Владимир Владимирович</option>
                     <option>Антонов Антон Антонович</option>
-                </datalist>
+                </datalist> -->
             </div>
             <div class="client_comment">
                 <label for="comment">Комментарий</label>
-                <textarea name="commentClient" id="comment" rows="3"></textarea>
+                <textarea name="commentClient" :value="dataWithVuex().comment" id="comment" rows="3"></textarea>
             </div>
         </div>
         <div class="product">
@@ -51,11 +49,11 @@
                         <th style="width: 15%;">Количество</th>
                         <th style="width: 15%;">Цена, $</th>
                     </tr>
-                    <tr class="table_content">
-                        <td>1</td>
-                        <td class="left">asdasdasd</td>
-                        <td>123</td>
-                        <td>123125</td>
+                    <tr class="table_content" v-for="td in dataWithVuex().product_info">
+                        <td>{{ td.id }}</td>
+                        <td class="left">{{ td.name_product }}</td>
+                        <td>{{ td.quantity }}</td>
+                        <td>{{ td.price }}</td>
                     </tr>
                 </table>
             </div>
@@ -69,10 +67,18 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 import coloredTableFields from "@/services/coloredTableFields"
+import { mapGetters } from 'vuex';
 
 export default defineComponent({
     name: 'CardOrder',
+    methods: {
+        ...mapGetters('storeProduct', ['vuexGetOrdersAsId']),
+        dataWithVuex() {
+            return this.vuexGetOrdersAsId()(this.$route.params.id)
+        }
+    },
     mounted() {
         coloredTableFields("table_content")
     }

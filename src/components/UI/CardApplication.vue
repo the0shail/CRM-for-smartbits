@@ -3,36 +3,42 @@
         <div class="info_order">
             <div class="info_created">
                 <label for="created_date">Дата создания</label>
-                <input type="text" id="created_date" value="11.03.2023" disabled>
+                <input type="text" id="created_date" :value="dataWithVuex().created_date" disabled>
             </div>
             <div class="info_manager">
                 <label for="manager">Менеджер</label>
-                <input type="text" id="manager" value="Иванов И.И." disabled>
+                <input type="text" id="manager" :value="dataWithVuex().manager" disabled>
             </div>
         </div>
         <div class="client_row">
             <div class="client_partner">
                 <label for="partner">Имя / Название компании</label>
-                <input type="text" id="partner" value="ООО 'SMARTBITS PRO'">
+                <input type="text" id="partner" :value="dataWithVuex().name_company">
             </div>
             <div class="client_counterparty">
                 <label for="contact">Контактные данные</label>
-                <input id="contact" value="+998-12345678" />
+                <input id="contact" :value="dataWithVuex().info_lid.phone" />
             </div>
         </div>
         <div class="client_comment">
             <label for="comment">Комментарий</label>
-            <textarea name="commentClient" id="comment" rows="3"></textarea>
+            <textarea name="commentClient" :value="dataWithVuex().comment" id="comment" rows="3"></textarea>
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 
 export default defineComponent({
     name: "CardApplication",
-    
+    methods: {
+        ...mapGetters('storeProduct', ['vuexGetDemandAsId']),
+        dataWithVuex() {
+            return this.vuexGetDemandAsId()(this.$route.params.id)
+        }
+    }
 
 })
 </script>
