@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/orders',
     name: "OrdersTableView",
     component: OrdersCardView
-  }
+  },
 ]
 
 const router = createRouter({

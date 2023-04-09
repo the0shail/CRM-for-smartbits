@@ -6,6 +6,7 @@
                 CRM
             </h4>
         </router-link>
+        <button class="button" @click="toggleMenuNav()" role="button"> menu</button>
         <ul class="nav-collapse">
             <li class="nav-link">
                 <router-link to="" class="icon-system">
@@ -32,7 +33,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 export default defineComponent({
-
+    methods: {
+        toggleMenuNav() {
+            const nav = document.querySelector('.nav-collapse')
+            nav?.classList.toggle("active");
+        }
+    }
 
 })
 </script>
@@ -46,6 +52,11 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+
+    @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+    }
 
 
     .nav-brand {
@@ -69,18 +80,63 @@ nav {
             margin-right: 10px;
         }
     }
-    .nav-collapse{
+
+    button {
+        display: none;
+        text-transform: capitalize;
+        border: #e9e9e9 2px solid;
+        background-color: transparent;
+        padding: 10px 20px;
+        border-radius: 3px;
+        color: #000;
+
+        @media screen and (max-width: 768px) {
+            display: block;
+        }
+    }
+
+    .nav-collapse {
         display: flex;
         align-items: center;
         list-style: none;
+        transition: 1000ms;
 
-        .nav-link{
+        &.active {
+            display: flex;
+        }
+
+        @media screen and (max-width: 768px) {
+            // position: absolute;
+            background-color: #fff;
+            padding: 20px;
+            width: 100%;
+            left: 0;
+            bottom: -80px;
+            border-top: 1px solid #e9e9e9;
+            box-sizing: border-box;
+            // box-shadow: 1px 3px 5px rgb(189, 189, 189);
+            justify-content: space-between;
+            margin: 0;
+            padding: 10px 0px;
+            display: none;
+        }
+
+
+        .nav-link {
             // margin: 0 10px;
             font-size: 22px;
-            .icon-system{
+
+            @media screen and (max-width: 768px) {
+                display: flex;
+            }
+
+            .icon-system {
                 position: relative;
                 padding: 10px;
 
+                @media screen and (max-width: 768px) {
+                    font-size: 22px;
+                }
 
                 // &::after{
                 //     content: '9+';
@@ -97,7 +153,8 @@ nav {
                 //     background-color: rgb(0, 145, 255);
                 // }
             }
-            &.persone{
+
+            &.persone {
                 font-size: 16px;
                 font-weight: 500;
                 padding: 0 10px;

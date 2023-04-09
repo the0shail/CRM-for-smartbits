@@ -17,10 +17,15 @@ export default defineComponent({
 })
 </script>
 <style lang="scss">
-
 @import url('@/assets/css/main.css');
 
 .wrapper {
-  margin: 0 40px ;
+  margin: 0 40px;
+}
+
+@media screen and (max-width: 992px) {
+  .wrapper {
+    margin: 0 20px;
+  }
 }
 </style>

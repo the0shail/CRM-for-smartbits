@@ -71,19 +71,31 @@ export default defineComponent({
             font-weight: 500;
             margin-bottom: 30px;
 
-            &:first-child {
-                margin-right: 30px;
-            }
-
             input {
                 background-color: #F4EDF3;
             }
+
+            @media screen and (max-width: 576px) {
+                width: 49%;
+            }
+
+            &:first-child {
+                margin-right: 30px;
+
+                @media screen and (max-width: 576px) {
+                    margin-right: 2%;
+                }
+            }
+
+
         }
+
     }
 
     .client_row {
         display: flex;
         justify-content: space-between;
+
 
         .client_partner,
         .client_counterparty {
@@ -91,6 +103,20 @@ export default defineComponent({
             flex-direction: column;
             width: 49%;
 
+        }
+
+        @media screen and (max-width: 768px) {
+            display: block;
+
+            .client_partner,
+            .client_counterparty {
+                width: 100%;
+
+                &:first-child {
+                    margin-bottom: 10px;
+                }
+
+            }
         }
     }
 

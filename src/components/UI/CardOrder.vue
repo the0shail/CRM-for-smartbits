@@ -39,16 +39,16 @@
             <div class="product_table">
                 <table class="table_for_product">
                     <tr class="table_header">
-                        <th style="width: 5%;">№</th>
-                        <th class="left" style="width: 65%;">Наименование</th>
-                        <th style="width: 15%;">Количество</th>
-                        <th style="width: 15%;">Цена, $</th>
+                        <th>№</th>
+                        <th class="left">Наименование</th>
+                        <th>Количество</th>
+                        <th class="price">Цена, $</th>
                     </tr>
                     <tr class="table_content" v-for="td in dataWithVuex().product_info">
                         <td>{{ td.id }}</td>
                         <td class="left">{{ td.name_product }}</td>
                         <td>{{ td.quantity }}</td>
-                        <td ref="table_price">{{ td.price }}</td>
+                        <td>{{ td.price }}</td>
                     </tr>
                 </table>
             </div>
@@ -62,8 +62,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-import coloredTableFields from "@/services/coloredTableFields"
 import { mapGetters } from 'vuex';
 
 export default defineComponent({
@@ -76,13 +74,9 @@ export default defineComponent({
         sumPriceTable() {
             let prices = this.dataWithVuex().product_info
             let sum = prices.reduce((sum, data) => sum += Number(data.price), 0)
-
             return sum
         }
     },
-    mounted() {
-        coloredTableFields("table_content")
-    }
 })
 </script>
 
@@ -120,12 +114,21 @@ export default defineComponent({
             flex-direction: column;
             font-weight: 500;
 
+            @media screen and (max-width: 576px) {
+                width: 49%;
+            }
+
             &:first-child {
                 margin-right: 30px;
+
+                @media screen and (max-width: 576px) {
+                    margin-right: 2%;
+                }
             }
 
             input {
                 background-color: #F4EDF3;
+                max-width: 300px;
             }
         }
     }
@@ -151,7 +154,19 @@ export default defineComponent({
                 }
             }
 
+            @media screen and (max-width: 768px) {
+                display: block;
 
+                .client_partner,
+                .client_counterparty {
+                    width: 100%;
+
+                    &:first-child {
+                        margin-bottom: 10px;
+                    }
+
+                }
+            }
 
         }
 
@@ -161,10 +176,15 @@ export default defineComponent({
             display: flex;
             flex-direction: column;
         }
+
     }
 
     .product {
         margin-bottom: 30px;
+
+        tr:nth-child(even) {
+            background-color: #F6F1F7;
+        }
 
         table,
         th,
@@ -172,11 +192,16 @@ export default defineComponent({
             border: 1px solid #E5E0E5;
             border-collapse: collapse;
             text-align: center;
+            padding: 10px;
 
             &.left {
                 padding: 10px 10px !important;
                 text-align: start;
             }
+        }
+
+        .product_table {
+            overflow-x: auto;
         }
 
         .table_for_product {
@@ -186,17 +211,10 @@ export default defineComponent({
 
             th {
                 font-weight: 500;
-                padding: 10px 0;
-            }
 
-            tr {
-                &.spicy {
-                    background-color: #F6F1F7;
+                &.price {
+                    width: 15%;
                 }
-            }
-
-            td {
-                padding: 10px 0;
             }
         }
 
@@ -206,6 +224,9 @@ export default defineComponent({
             font-weight: 500;
             width: 20%;
 
+            @media screen and (max-width: 576px) {
+                width: 50%;
+            }
             &:first-child {
                 margin-right: 30px;
             }
