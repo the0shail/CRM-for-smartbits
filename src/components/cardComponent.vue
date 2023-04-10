@@ -67,54 +67,70 @@ export default defineComponent({
         justify-content: space-between;
         margin-bottom: 30px;
 
-        // button {
-        //     background-color: transparent;
-        //     border-radius: 3px;
-        //     font-weight: 500;
-        //     border: 2px solid grey;
-        //     padding: 10px 20px;
+        .button-4 {
+            appearance: none;
+            background-color: #FAFBFC;
+            box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+            box-sizing: border-box;
+            color: #24292E;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            font-size: 14px;
+            line-height: 20px;
+            list-style: none;
+            position: relative;
+            transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            white-space: nowrap;
+            word-wrap: break-word;
+            border-radius: 3px;
+            font-weight: 500;
+            text-decoration: none;
+            border: 2px solid grey;
+            padding: 10px 20px;
 
-        // }
-    }
-
-    .card_tabs {
-        display: flex;
-        list-style: none;
-        margin-bottom: 30px;
-        border-bottom: 1px solid #E5E0E5;
-
-        li {
-            padding: 20px;
-            border: 1px solid #E5E0E5;
-            background-color: #f6f6f6;
-            border-bottom: none;
-            border-top-right-radius: 3px;
-            border-top-left-radius: 3px;
-
-
-            &:first-child {
-                border-right: none;
+            &:hover {
+                background-color: #F3F4F6;
+                text-decoration: none;
+                transition-duration: 0.1s;
             }
 
-            &.active {
-                position: relative;
-                background-color: #fff;
+            &:disabled {
+                background-color: #FAFBFC;
+                border-color: rgba(27, 31, 35, 0.15);
+                color: #959DA5;
+                cursor: default;
+            }
 
-                // border-bottom: 3px solid #fff;
-                &::after {
-                    content: '';
-                    position: absolute;
-                    width: 100%;
-                    height: 2px;
-                    background-color: #ffffff;
-                    bottom: -2px;
-                    left: 0;
-                }
+            &:active {
+                background-color: #EDEFF2;
+                box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+                transition: none 0s;
+            }
+
+            &:focus {
+                outline: 1px transparent;
+
+            }
+
+            &::before {
+                display: none;
+
+            }
+
+            &:-webkit-details-marker {
+                display: none;
+
             }
         }
     }
 
     .tabs {
+
         div {
 
             &#CardApplic,
@@ -123,6 +139,8 @@ export default defineComponent({
             }
 
         }
+
+
     }
 
     .tabs>input[type="radio"] {
@@ -130,13 +148,9 @@ export default defineComponent({
     }
 
     .tabs>div {
-        /* скрыть контент по умолчанию */
         display: none;
-        // border: 1px solid #e0e0e0;
-        // font-size: 16px;
     }
 
-    /* отобразить контент, связанный с вабранной радиокнопкой (input type="radio") */
     #tab-btn-1:checked~#CardApplic,
     #tab-btn-2:checked~#CardOrder {
         display: block;
@@ -166,63 +180,7 @@ export default defineComponent({
         background-color: #fff;
         border-bottom: 1px solid #fff;
     }
-}
 
-.button-4 {
-    appearance: none;
-    background-color: #FAFBFC;
-    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-    box-sizing: border-box;
-    color: #24292E;
-    cursor: pointer;
-    display: inline-block;
-    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    font-size: 14px;
-    line-height: 20px;
-    list-style: none;
-    position: relative;
-    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;
-    white-space: nowrap;
-    word-wrap: break-word;
-    border-radius: 3px;
-    font-weight: 500;
-    text-decoration: none;
-    border: 2px solid grey;
-    padding: 10px 20px;
-}
 
-.button-4:hover {
-    background-color: #F3F4F6;
-    text-decoration: none;
-    transition-duration: 0.1s;
-}
-
-.button-4:disabled {
-    background-color: #FAFBFC;
-    border-color: rgba(27, 31, 35, 0.15);
-    color: #959DA5;
-    cursor: default;
-}
-
-.button-4:active {
-    background-color: #EDEFF2;
-    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-    transition: none 0s;
-}
-
-.button-4:focus {
-    outline: 1px transparent;
-}
-
-.button-4:before {
-    display: none;
-}
-
-.button-4:-webkit-details-marker {
-    display: none;
 }
 </style>

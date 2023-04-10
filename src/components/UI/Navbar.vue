@@ -114,7 +114,6 @@ nav {
             bottom: -80px;
             border-top: 1px solid #e9e9e9;
             box-sizing: border-box;
-            // box-shadow: 1px 3px 5px rgb(189, 189, 189);
             justify-content: space-between;
             margin: 0;
             padding: 10px 0px;
@@ -123,7 +122,6 @@ nav {
 
 
         .nav-link {
-            // margin: 0 10px;
             font-size: 22px;
 
             @media screen and (max-width: 768px) {
@@ -137,21 +135,6 @@ nav {
                 @media screen and (max-width: 768px) {
                     font-size: 22px;
                 }
-
-                // &::after{
-                //     content: '9+';
-                //     font-size: 10px;
-                //     font-weight: 500;
-                //     color: white;
-                //     position: absolute;
-                //     width: 17px;
-                //     height: 17px;
-                //     right: -5px;
-                //     top: -5px;
-                //     border-radius: 50%;
-                //     text-align: center;
-                //     background-color: rgb(0, 145, 255);
-                // }
             }
 
             &.persone {

@@ -23,6 +23,7 @@
             </tr>
         </table>
     </div>
+
     <div class="notification">
         <li class="row_number">
             Результатов: {{ viewResultElement() }}
@@ -46,14 +47,6 @@ export default defineComponent({
     },
 })
 </script>
-
-<!-- style="width: 5%;" -->
-<!-- style="width: 12%;" -->
-<!-- style="width: 12%;" -->
-<!-- style="width: 12%;" -->
-<!-- style="width: 30%;" -->
-<!-- style="width: 30%;" -->
-
 
 <style lang="scss" scoped>
 div.table {

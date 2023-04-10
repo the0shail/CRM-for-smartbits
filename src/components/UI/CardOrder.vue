@@ -227,6 +227,7 @@ export default defineComponent({
             @media screen and (max-width: 576px) {
                 width: 50%;
             }
+
             &:first-child {
                 margin-right: 30px;
             }
