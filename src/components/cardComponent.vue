@@ -10,9 +10,9 @@
             <router-link to="/" class="button-4" role="button">История</router-link>
         </div>
         <div class="tabs">
-            <input type="radio" name="tab-btn" id="tab-btn-1" value="">
+            <input type="radio" name="tab-btn" id="tab-btn-1">
             <label for="tab-btn-1">Заявка</label>
-            <input type="radio" name="tab-btn" id="tab-btn-2" value="" checked>
+            <input type="radio" name="tab-btn" id="tab-btn-2" checked>
             <label for="tab-btn-2">Заказ</label>
 
             <div id="CardApplic">
@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 
 import CardOrder from '@/components/UI/CardOrder.vue'
 import CardApplication from '@/components/UI/CardApplication.vue'
@@ -36,9 +37,6 @@ export default defineComponent({
     name: "cardComponent",
     components: {
         CardOrder, CardApplication
-    },
-    methods: {
-
     },
 })
 </script>

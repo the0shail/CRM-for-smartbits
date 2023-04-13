@@ -3,11 +3,11 @@
         <div class="info_order">
             <div class="info_created">
                 <label for="created_date">Дата создания</label>
-                <input type="text" id="created_date" :value="dataWithVuex().created_date" disabled>
+                <input type="text" id="created_date" :value="dataWithVuex('created_date')" disabled>
             </div>
             <div class="info_manager">
                 <label for="manager">Менеджер</label>
-                <input type="text" id="manager" :value="dataWithVuex().manager" disabled>
+                <input type="text" id="manager" :value="dataWithVuex('manager')" disabled>
             </div>
         </div>
         <div class="client">
@@ -15,23 +15,23 @@
             <div class="client_row">
                 <div class="client_partner">
                     <label for="partner">Партнер</label>
-                    <input type="text" id="partner" :value="dataWithVuex().partner">
+                    <input type="text" id="partner" :value="dataWithVuex('partner')">
                 </div>
                 <div class="client_counterparty">
                     <label for="counterparty">Контрагент</label>
                     <input list="company" id="counterparty" name="counterparty" value="" />
                     <datalist id="company">
-                        <option v-for="option in dataWithVuex().counterparty">{{ option }}</option>
+                        <option v-for="option in dataWithVuex('counterparty')">{{ option }}</option>
                     </datalist>
                 </div>
             </div>
             <div class="client_contact">
                 <label for="contact">Контактное лицо</label>
-                <input list="browsers" id="contact" :value="dataWithVuex().contact_user.user_name" name="contact" />
+                <input list="browsers" id="contact" :value="dataWithVuex('contact_user')['user_name']" name="contact" />
             </div>
             <div class="client_comment">
                 <label for="comment">Комментарий</label>
-                <textarea name="commentClient" :value="dataWithVuex().comment" id="comment" rows="3"></textarea>
+                <textarea name="commentClient" :value="dataWithVuex('comment')" id="comment" rows="3"></textarea>
             </div>
         </div>
         <div class="product">
@@ -44,7 +44,7 @@
                         <th>Количество</th>
                         <th class="price">Цена, $</th>
                     </tr>
-                    <tr class="table_content" v-for="td in dataWithVuex().product_info">
+                    <tr class="table_content" v-for="td in dataWithVuex('product_info')">
                         <td>{{ td.id }}</td>
                         <td class="left">{{ td.name_product }}</td>
                         <td>{{ td.quantity }}</td>
@@ -54,7 +54,7 @@
             </div>
             <div class="product_price">
                 <label for="product_price">Сумма, $</label>
-                <input type="text" id="product_price" :value="sumPriceTable()" disabled>
+                <input type="text" id="product_price" :value="sumPriceTable('product_info')" disabled>
             </div>
         </div>
     </div>
@@ -68,11 +68,26 @@ export default defineComponent({
     name: 'CardOrder',
     methods: {
         ...mapGetters('storeProduct', ['vuexGetOrdersAsId']),
-        dataWithVuex() {
-            return this.vuexGetOrdersAsId()(this.$route.params.id)
+        dataWithVuex(arg?: string) {
+            let pageId = this.$route.params.id
+            let request = this.vuexGetOrdersAsId()(pageId)
+
+            if (request !== undefined && typeof request === 'object') {
+                if (arg === undefined) {
+                    return request;
+                }
+                if (request[arg] !== undefined) {
+                    return request[arg];
+                }
+            } else {
+                return 'Not indicated'
+            }
         },
-        sumPriceTable() {
-            let prices = this.dataWithVuex().product_info
+        sumPriceTable(arg) {
+            let prices = this.dataWithVuex(arg)
+            if (prices === 'Not indicated') {
+                return
+            }
             let sum = prices.reduce((sum, data) => sum += Number(data.price), 0)
             return sum
         }

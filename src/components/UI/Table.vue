@@ -39,6 +39,7 @@ import resultElement from "@/services/resultElement"
 
 
 export default defineComponent({
+
     methods: {
         ...mapGetters("storeProduct", ['vuexGetDemand']),
         viewResultElement() {
